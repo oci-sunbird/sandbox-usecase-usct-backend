@@ -53,7 +53,7 @@ jobs:
           role-arn: 'arn:aws:iam::${AWS_ACCOUNT}:role/${AWS_ROLE}'
           aws-region: AWS_DEFAULT_REGION
           # optional parameters
-          profile-name: ${AWS_ROLE}
+          profile-name: CircleCIRole
           role-session-name: CircleSession
           session-duration: '1800'
       - run:
