@@ -1,0 +1,86 @@
+= Mock-SRIS
+
+This is a driver backend application for
+https://github.com/GovStackWorkingGroup/product-use-cases/blob/main/product-use-case/inst-1-unconditional-social-cash-transfer.md[Unconditional Social Cash Transfer]
+(USCT) use case.
+
+
+== Application logic
+[mermaid]
+----
+sequenceDiagram
+
+Civil servant ->> MOCK SRIS: Get all candidates
+Civil servant ->> MOCK SRIS: Create new beneficiary and remove beneficiary from candidates list
+    participant im as Information mediator
+MOCK SRIS ->> Payment mock: Automatically register beneficiary in payment system
+Civil servant ->> MOCK SRIS: Order payment
+MOCK SRIS ->> Payment mock: Automatically validate prepayment
+MOCK SRIS ->> Payment mock: Automatically make bulk payment
+MOCK SRIS -->> Civil servant: Return result
+----
+
+=== Technology stack
+Project uses OAuth 2.0 Resource Server. For a details please take a look [documentation](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/index.html).
+
+Project uses [In-Memory Authentication](https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/in-memory.html) to provide support for username/password based authentication that is stored in memory.
+
+== Technical part
+
+=== Test endpoints
+The repository has a test endpoint `/emulator-health` to check the connection to the [information system](https://docs.x-road.global/Architecture/arc-g_x-road_arhitecture.html#23-information-system)
+([payment-emulator](https://github.com/GovStackWorkingGroup/sandbox-bb-payments/tree/main/emulator/docs)) through the
+[information mediator](https://github.com/GovStackWorkingGroup/sandbox-bb-information-mediator/blob/main/information-mediator/docs/main.md).
+
+=== Quick start
+After the installation finishes, one can access the interfaces e.g. with port forwarding.
+
+[source, shell]
+----
+kubectl port-forward \
+    -n mock-sris \
+    service/mock-sris 8080 8080
+----
+
+Curl command:
+
+`curl 'localhost:8080/emulator-health'`
+
+=== CI/CD
+Pipeline variables:
+* AWS_RESOURCE_NAME_PREFIX = mock-sris/dev-app
+* AWS_CLUSTER_NAME = Kubernetes cluster name, e.g. "Govstack-sandbox-cluster-dev"
+* AWS_ACCOUNT = 463471358064 (Sandbox Dev)
+* AWS_ROLE = CircleCIRole
+* CHART_NAMESPACE = `mock-sris`
+* AWS_DEFAULT_REGION = eu-central-1
+
+=== Useful commands
+
+[source, shell]
+----
+helm install mock-sris ./helm/ --create-namespace --namespace mock-sris
+----
+
+[source, shell]
+----
+helm upgrade --install mock-sris ./helm/ --create-namespace --namespace mock-sris
+----
+
+[source, shell]
+----
+helm install --debug --dry-run mock-sris ./helm/ --create-namespace --namespace mock-sris
+----
+
+----
+helm uninstall mock-sris --namespace mock-sris
+----
+
+=== DB connection
+`spring.datasource.url=jdbc:h2:file:./src/main/resources/db/data/mock-sris;AUTO_SERVER=true`
+
+=== Information mediator variables
+
+**PAYMENT_IM_BASE_URL** = `http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/api`
+
+**PAYMENT_IM_HEADER** = `SANDBOX/ORG/CLIENT/TEST`
