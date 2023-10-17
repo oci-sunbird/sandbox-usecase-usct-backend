@@ -61,7 +61,7 @@ spec:
       containers:
         - name: xroad-security-server
           image: {{ printf "%s:%s" $.Values.serverImage $tag | quote }}
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           resources:
             requests:
               memory: {{ $.Values.serverMem | default "2Gi" | quote }}
