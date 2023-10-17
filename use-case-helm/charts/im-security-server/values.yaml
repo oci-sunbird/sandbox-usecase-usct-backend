@@ -1,5 +1,5 @@
 ---
-serverImage: "harbor.k-space.ee/gov-stack/security-server"
+serverImage: "oleksiidn/usct-x-road-ss"
 tokenPin: "1234"
 dbStorage: "5Gi"
 servers:

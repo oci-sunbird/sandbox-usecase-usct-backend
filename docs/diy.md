@@ -11,15 +11,15 @@
 2. Use next commands to up and run application.
 
 ```shell
-helm install usct ./use-case-helm/ --create-namespace --namespace usct
+helm install mock-sris ./use-case-helm/ --create-namespace --namespace mock-sris
 ```
 
 ```shell
-helm upgrade --install usct ./use-case-helm/ --create-namespace --namespace usct
+helm upgrade --install mock-sris ./use-case-helm/ --create-namespace --namespace mock-sris
 ```
 
 ```shell
-helm uninstall usct --namespace usct
+helm uninstall mock-sris --namespace mock-sris
 ```
 
 
