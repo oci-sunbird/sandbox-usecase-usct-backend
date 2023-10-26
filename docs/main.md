@@ -22,6 +22,7 @@ sequenceDiagram
 
 %%  Civil servant ->> eSignet: /v1/esignet/authorization/userinfo //GET no need for sign in step 
     Civil servant ->> USCT-backend: Get all candidates
+    USCT-backend ->> OpenIMIS: Get packages
     Civil servant ->> USCT-backend: Create new beneficiary and remove beneficiary from candidates list
     USCT-backend ->> Payment BB: Automatically register beneficiary in payment system if not registered
     USCT-backend ->> Payment BB: Automatically update beneficiary in payment system if registered
