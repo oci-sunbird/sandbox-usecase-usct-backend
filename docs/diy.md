@@ -6,6 +6,12 @@
 * [Docker](https://www.docker.com/)
 * [Helm charts](https://helm.sh/docs/topics/charts/)
 
+[//]: # (todo)
+[//]: # Take a look on default disck size in minikub.
+[//]: # It need around 40 GBi
+
+[//]: # Update main file. Explain from Minikube prospective
+
 ## Installation 
 1. Pull the [helm chart](./../use-case-helm).
 2. Use next commands to up and run application.
