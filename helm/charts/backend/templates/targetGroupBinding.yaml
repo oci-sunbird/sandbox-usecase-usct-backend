@@ -1,0 +1,9 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: usct-backend
+spec:
+  serviceRef:
+    name: backend
+    port: 8080
+  targetGroupARN: "{{.Values.targetGroupBinding.arn}}"
