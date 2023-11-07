@@ -1,10 +1,20 @@
 # How to deploy USCT use case to minikube 
 
+This is minimal version of USCT with only X-Road as BB and payment emulator.
+
+High overview located in [Sandbox documentation](https://govstack.gitbook.io/sandbox/access-demos/diy/usct-diy-version).
+
 ## Prerequisites 
 
 * [minikube](https://minikube.sigs.k8s.io/docs/)
 * [Docker](https://www.docker.com/)
 * [Helm charts](https://helm.sh/docs/topics/charts/)
+
+[//]: # (todo)
+[//]: # Take a look on default disck size in minikub.
+[//]: # It needs around 40 GBi
+
+[//]: # Update main file. Explain from Minikube prospective
 
 ## Installation 
 1. Pull the [helm chart](./../use-case-helm).
