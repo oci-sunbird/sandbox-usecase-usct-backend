@@ -2,7 +2,7 @@ deployment:
   name: usct
   containers:
     name: usct-backend
-    image: 463471358064.dkr.ecr.eu-central-1.amazonaws.com/app/usct/dev-backend:imis-4
+    image: 463471358064.dkr.ecr.eu-central-1.amazonaws.com/app/usct/dev-backend:imis-6
     imagePullPolicy: "Always"
 
 service:
@@ -42,3 +42,5 @@ callback:
 openImis:
   url: "http://backend.open-imis.svc.cluster.local:8000/data/registryname/111?search=package&filter=phone"
 
+targetGroupBinding:
+  arn: "arn:aws:elasticloadbalancing:eu-central-1:463471358064:targetgroup/usct-backend/c90f9546a88c2f0b"

@@ -112,6 +112,12 @@ In order to protect by IP callback endpoints, whitelist of IP can be provided by
 | CALLBACK_CIDR | Comma separated CIDR-s for whitelisting IP | All IP ranges eg "0.0.0.0/0,::/0" |
 
 
+## Public access
+
+[TargetGroupBinding](https://aws.amazon.com/blogs/containers/introducing-aws-load-balancer-controller/) uses to expose application to the public.
+
+Implementation [link](/helm/charts/backend/templates/targetGroupBinding.yaml).
+
 ## CI/CD
 
 Pipeline variables:
