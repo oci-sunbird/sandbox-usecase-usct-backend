@@ -1,5 +1,8 @@
 # How to deploy USCT use case to minikube 
 
+![Arhitecture](images/diy-arcitecture.drawio.png)
+
+
 This is minimal version of USCT with only X-Road as BB and payment emulator.
 
 High overview located in [Sandbox documentation](https://govstack.gitbook.io/sandbox/access-demos/diy/usct-diy-version).
