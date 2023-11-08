@@ -17,4 +17,4 @@ payment:
     government_identifier: "066283"
   bb:
     im:
-      base_url: "http://sandbox-xroad-ss2.mock-sris.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/api"
+      base_url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/api"

@@ -26,15 +26,15 @@ High overview located in [Sandbox documentation](https://govstack.gitbook.io/san
 2. Use next commands to up and run application.
 
 ```shell
-helm install mock-sris ./diy-helm/ --create-namespace --namespace mock-sris
+helm install usct ./diy-helm/ --create-namespace --namespace usct
 ```
 
 ```shell
-helm upgrade --install mock-sris ./diy-helm/ --create-namespace --namespace mock-sris
+helm upgrade --install usct ./diy-helm/ --create-namespace --namespace usct
 ```
 
 ```shell
-helm uninstall mock-sris --namespace mock-sris
+helm uninstall usct --namespace usct
 ```
 
 
@@ -53,7 +53,7 @@ kubectl port-forward \
 8. Click on 'Services' tub. 
 9. Press 'Add REST' button. 
 10. Choose 'OpenAPI 3 Description' option 
-11. Fill 'http://payment-bb-emulator.mock-sris.svc.cluster.local:8080/v3/api-docs' into URL placeholder and 'api' into Service Code. 
+11. Fill 'http://payment-bb-emulator.usct.svc.cluster.local:8080/v3/api-docs' into URL placeholder and 'api' into Service Code. 
 12. Enable a new created service --> click on the related switch. 
 13. Expand a new created REST definition 
 14. Press 'Add subjects' in the 'Service Parameters' tab 
