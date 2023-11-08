@@ -24,15 +24,15 @@ High overview located in [Sandbox documentation](https://govstack.gitbook.io/san
 2. Use next commands to up and run application.
 
 ```shell
-helm install usct ./use-case-helm/ --create-namespace --namespace usct
+helm install mock-sris ./diy-helm/ --create-namespace --namespace mock-sris
 ```
 
 ```shell
-helm upgrade --install usct ./use-case-helm/ --create-namespace --namespace usct
+helm upgrade --install mock-sris ./diy-helm/ --create-namespace --namespace mock-sris
 ```
 
 ```shell
-helm uninstall usct --namespace usct
+helm uninstall mock-sris --namespace mock-sris
 ```
 
 
