@@ -1,5 +1,12 @@
 # How to deploy USCT use case to minikube 
 
+Current set include X-road set:
+
+1. Central server
+2. Security server management (for connecting to the central server)
+3. Clients Security server
+4. Provider Security server
+
 ![Arhitecture](images/diy-arcitecture.drawio.png)
 
 
@@ -13,11 +20,6 @@ High overview located in [Sandbox documentation](https://govstack.gitbook.io/san
 * [Docker](https://www.docker.com/)
 * [Helm charts](https://helm.sh/docs/topics/charts/)
 
-[//]: # (todo)
-[//]: # Take a look on default disck size in minikub.
-[//]: # It needs around 40 GBi
-
-[//]: # Update main file. Explain from Minikube prospective
 
 ## Installation 
 1. Pull the [helm chart](./../use-case-helm).
@@ -58,11 +60,3 @@ kubectl port-forward \
 15. Press 'Search' button 
 16. Check 'Client' and 'Provider' checkboxes and press 'Add selected' 
 17. Close popup
-
-
-Current set include X-road set:
-
-1. Central server
-2. Security server management (for connecting to the central server)
-3. Security server for clients
-4. Security server for Providers.
