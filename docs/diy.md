@@ -47,11 +47,11 @@ kubectl port-forward \
 4. Navigate to 'Clients' tab and press 'Add subsystem' button. 
 5. Fill 'Payment' name as Subsystem Code. 
 6. Press Yes in Register client popup window. 
-7. Go into new 'PAYMENT' subsystem 
+7. Go into new 'PAYMENT' subsystem CAPITAL CASE
 8. Click on 'Services' tub. 
 9. Press 'Add REST' button. 
 10. Choose 'OpenAPI 3 Description' option 
-11. Fill 'http://payment-bb-emulator.usct.svc.cluster.local:8080/v3/api-docs' into URL placeholder and 'api' into Service Code. 
+11. Fill 'http://payment-bb-emulator.mock-sris.svc.cluster.local:8080/v3/api-docs' into URL placeholder and 'api' into Service Code. 
 12. Enable a new created service --> click on the related switch. 
 13. Expand a new created REST definition 
 14. Press 'Add subjects' in the 'Service Parameters' tab 
