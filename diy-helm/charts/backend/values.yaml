@@ -1,0 +1,20 @@
+deployment:
+  name: backend
+  containers:
+    name: dev-backend
+    image: oleksiidn/usct-backend:0.0.2
+    imagePullPolicy: IfNotPresent
+
+service:
+  name: backend
+  port: 8080
+
+payment:
+  config:
+    mode: "emulator"
+  variables:
+    source_bb_id: "USCT-BB"
+    government_identifier: "066283"
+  bb:
+    im:
+      base_url: "http://sandbox-xroad-ss2.mock-sris.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/api"

@@ -1,6 +1,6 @@
 ---
 tokenPin: "1234"
-serverImage: "im/x-road/central-server"
+serverImage: "oleksiidn/usct-x-road-cs"
 serverTag: "latest-cs"
 
 container:
