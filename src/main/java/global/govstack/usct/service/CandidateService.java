@@ -16,14 +16,17 @@ public class CandidateService {
   private final CandidateRepository candidateRepository;
   private final PersonService personService;
   private final PackageService packageService;
+  private final ConsentService consentService;
 
   public CandidateService(
       CandidateRepository candidateRepository,
       PersonService personService,
-      PackageService packageService) {
+      PackageService packageService,
+      ConsentService consentService) {
     this.candidateRepository = candidateRepository;
     this.personService = personService;
     this.packageService = packageService;
+    this.consentService = consentService;
   }
 
   public List<CandidateDto> findAll() {
@@ -33,7 +36,8 @@ public class CandidateService {
             candidate -> {
               List<PackageDto> packageDtoList =
                   candidate.getPackageIds().stream().map(packageService::getById).toList();
-              return new CandidateDto(candidate, packageDtoList);
+              var consent = consentService.findById(candidate.getId());
+              return new CandidateDto(candidate, packageDtoList, consent);
             })
         .toList();
   }
@@ -45,7 +49,8 @@ public class CandidateService {
             .orElseThrow(() -> new RuntimeException("Candidate with id: " + id + " doesn't exist"));
     List<PackageDto> packageDtoList =
         candidate.getPackageIds().stream().map(packageService::getById).toList();
-    return new CandidateDto(candidate, packageDtoList);
+    var consent = consentService.findById(candidate.getId());
+    return new CandidateDto(candidate, packageDtoList, consent);
   }
 
   public void deleteById(Integer id) {

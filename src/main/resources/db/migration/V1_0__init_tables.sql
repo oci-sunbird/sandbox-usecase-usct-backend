@@ -32,13 +32,22 @@ create table CANDIDATE
         foreign key (PERSON_ID) references PERSON
 );
 
+create table CONSENT
+(
+    ID             INTEGER AUTO_INCREMENT NOT NULL,
+    CANDIDATE_ID   INTEGER,
+    STATUS         CHARACTER VARYING(255),
+    DATE           CHARACTER VARYING(255),
+    constraint CONSENT_PK
+        primary key (ID)
+);
 
 
 create table BENEFICIARY
 (
-    ID              INTEGER AUTO_INCREMENT,
-    PERSON_ID    INTEGER,
-    PACKAGE_ID      INTEGER,
+    ID                      INTEGER AUTO_INCREMENT,
+    PERSON_ID               INTEGER,
+    PACKAGE_ID              INTEGER,
     PAYMENT_STATUS          CHARACTER VARYING(255),
     FUNCTIONAL_ID                           CHARACTER VARYING(255),
     PAYMENT_ONBOARDING_STATUS               CHARACTER VARYING(255),
@@ -97,3 +106,15 @@ INSERT INTO CANDIDATE(PERSON_ID, PACKAGE_ID) values
                                      (8, ARRAY [147, 148, 149]),
                                      (9, ARRAY [147, 148, 149]),
                                      (10, ARRAY []);
+
+INSERT INTO CONSENT(CANDIDATE_ID, STATUS, DATE) values
+                                        (1, 'GRANTED', '2023-11-20T12:30:00'),
+                                        (2, 'GRANTED', '2023-11-23T12:30:00'),
+                                        (3, 'GRANTED', '2023-11-24T12:30:00'),
+                                        (4, 'NOT_GRANTED', null),
+                                        (5, 'GRANTED', '2023-11-24T12:30:00'),
+                                        (6, 'GRANTED', '2023-11-25T12:30:00'),
+                                        (7, 'NOT_GRANTED', null),
+                                        (8, 'GRANTED', '2023-11-15T12:30:00'),
+                                        (9, 'GRANTED', '2023-11-13T12:30:00'),
+                                        (10, 'GRANTED', '2023-11-13T12:30:00')
