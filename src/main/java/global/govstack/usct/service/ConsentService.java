@@ -1,5 +1,6 @@
 package global.govstack.usct.service;
 
+import global.govstack.usct.model.Candidate;
 import global.govstack.usct.model.Consent;
 import global.govstack.usct.repositories.ConsentRepository;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,9 @@ public class ConsentService {
 
   public Consent save(Consent consent) {
     return consentRepository.save(consent);
+  }
+
+  public void deleteByCandidateId(Candidate candidate) {
+    consentRepository.deleteByCandidateId(candidate);
   }
 }
