@@ -13,7 +13,7 @@ public class Consent {
 
   @OneToOne
   @JoinColumn(name = "candidate_id", nullable = false)
-  private Candidate candidate;
+  private Candidate candidateId;
 
   @Column
   @Enumerated(EnumType.STRING)
@@ -29,12 +29,12 @@ public class Consent {
     this.id = id;
   }
 
-  public Candidate getCandidate() {
-    return candidate;
+  public Candidate getCandidateId() {
+    return candidateId;
   }
 
-  public void setCandidate(Candidate candidate) {
-    this.candidate = candidate;
+  public void setCandidateId(Candidate candidate) {
+    this.candidateId = candidate;
   }
 
   public ConsentStatus getStatus() {

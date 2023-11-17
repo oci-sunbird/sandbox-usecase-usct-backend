@@ -8,19 +8,19 @@ import lombok.Getter;
 public class ConsentDto {
 
   private Integer id;
-  private Integer candidate_id;
+  private Integer candidateId;
 
   @Getter private ConsentStatus status;
 
-  @Getter private LocalDateTime dataTime;
+  @Getter private LocalDateTime date;
 
   public ConsentDto() {}
 
   public ConsentDto(Consent consent) {
     this.id = consent.getId();
-    this.candidate_id = consent.getCandidate().getId();
+    this.candidateId = consent.getCandidateId().getId();
     this.status = consent.getStatus();
-    this.dataTime = consent.getDate();
+    this.date = consent.getDate();
   }
 
   public int getId() {
@@ -31,19 +31,19 @@ public class ConsentDto {
     this.id = id;
   }
 
-  public Integer getCandidate_id() {
-    return candidate_id;
+  public Integer getCandidateId() {
+    return candidateId;
   }
 
-  public void setCandidate_id(Integer candidate_id) {
-    this.candidate_id = candidate_id;
+  public void setCandidateId(Integer candidateId) {
+    this.candidateId = candidateId;
   }
 
   public void setStatus(ConsentStatus status) {
     this.status = status;
   }
 
-  public void setDataTime(LocalDateTime dataTime) {
-    this.dataTime = dataTime;
+  public void setDate(LocalDateTime date) {
+    this.date = date;
   }
 }
