@@ -1,5 +1,6 @@
 package global.govstack.usct.service;
 
+import global.govstack.usct.configuration.OpenImisProperties;
 import global.govstack.usct.controller.dto.CandidateDto;
 import global.govstack.usct.controller.dto.ConsentDto;
 import global.govstack.usct.controller.dto.CreateCandidateDto;
@@ -18,16 +19,19 @@ public class CandidateService {
   private final PersonService personService;
   private final PackageService packageService;
   private final ConsentService consentService;
+  private final OpenImisProperties openImisProperties;
 
   public CandidateService(
       CandidateRepository candidateRepository,
       PersonService personService,
       PackageService packageService,
-      ConsentService consentService) {
+      ConsentService consentService,
+      OpenImisProperties openImisProperties) {
     this.candidateRepository = candidateRepository;
     this.personService = personService;
     this.packageService = packageService;
     this.consentService = consentService;
+    this.openImisProperties = openImisProperties;
   }
 
   public List<CandidateDto> findAll() {
@@ -35,10 +39,21 @@ public class CandidateService {
     return candidates.stream()
         .map(
             candidate -> {
-              List<PackageDto> packageDtoList =
-                  candidate.getOpenImisPackageIds().stream().map(packageService::getById).toList();
+              List<PackageDto> packagesDto = List.of();
+              if (openImisProperties.mode().equals("emulator")) {
+                packagesDto =
+                    candidate.getEmulatorPackageIds().stream()
+                        .map(packageService::getById)
+                        .toList();
+              }
+              if (openImisProperties.mode().equals("open-imis")) {
+                packagesDto =
+                    candidate.getOpenImisPackageIds().stream()
+                        .map(packageService::getById)
+                        .toList();
+              }
               var consent = new ConsentDto(consentService.findById(candidate.getId()));
-              return new CandidateDto(candidate, packageDtoList, consent);
+              return new CandidateDto(candidate, packagesDto, consent);
             })
         .toList();
   }

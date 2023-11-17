@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PackageService {
-  private final OpenImisService openImisService;
+  private final DigitalRegistriesService digitalRegistries;
   private Map<Integer, PackageDto> packagesCache;
 
-  public PackageService(OpenImisService openImisService) {
-    this.openImisService = openImisService;
+  public PackageService(DigitalRegistriesService digitalRegistries) {
+    this.digitalRegistries = digitalRegistries;
     this.packagesCache = new ConcurrentHashMap<>();
   }
 
   public List<PackageDto> findAll() {
     if (packagesCache.isEmpty()) {
-      List<PackageDto> allPackages = openImisService.getAll();
+      List<PackageDto> allPackages = digitalRegistries.getAll();
       allPackages.forEach(item -> packagesCache.put(item.getId(), item));
       return allPackages;
     }
@@ -28,7 +28,7 @@ public class PackageService {
 
   public PackageDto getById(int id) {
     if (packagesCache.isEmpty()) {
-      List<PackageDto> allPackages = openImisService.getAll();
+      List<PackageDto> allPackages = digitalRegistries.getAll();
       allPackages.forEach(item -> packagesCache.put(item.getId(), item));
     }
     return packagesCache.get(id);
