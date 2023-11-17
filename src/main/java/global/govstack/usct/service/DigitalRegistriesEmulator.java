@@ -1,6 +1,5 @@
 package global.govstack.usct.service;
 
-import global.govstack.usct.configuration.DigitalRegistriesBBInformationMediatorProperties;
 import global.govstack.usct.configuration.OpenImisProperties;
 import global.govstack.usct.controller.dto.digital.registries.MainResponseDto;
 import global.govstack.usct.controller.dto.digital.registries.PackageDto;
@@ -23,20 +22,13 @@ public class DigitalRegistriesEmulator implements DigitalRegistriesService {
 
   private final RestTemplate restTemplate;
 
-  private final DigitalRegistriesBBInformationMediatorProperties
-      digitalRegistriesBBInformationMediatorProperties;
-
-  public DigitalRegistriesEmulator(
-      OpenImisProperties openImisProperties,
-      DigitalRegistriesBBInformationMediatorProperties
-          digitalRegistriesBBInformationMediatorProperties) {
+  public DigitalRegistriesEmulator(OpenImisProperties openImisProperties) {
     this.openImisProperties = openImisProperties;
     this.restTemplate = new RestTemplate();
-    this.digitalRegistriesBBInformationMediatorProperties =
-        digitalRegistriesBBInformationMediatorProperties;
+
     httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-    httpHeaders.add("X-Road-Client", digitalRegistriesBBInformationMediatorProperties.header());
+    httpHeaders.add("X-Road-Client", openImisProperties.header());
   }
 
   public List<PackageDto> getAll() {
@@ -54,15 +46,5 @@ public class DigitalRegistriesEmulator implements DigitalRegistriesService {
     } catch (Exception ex) {
       throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, ex.getMessage());
     }
-  }
-
-  public String health() {
-    return new RestTemplate()
-        .exchange(
-            digitalRegistriesBBInformationMediatorProperties.baseUrl() + "/actuator/health",
-            HttpMethod.GET,
-            new HttpEntity<>(null, httpHeaders),
-            String.class)
-        .getBody();
   }
 }
