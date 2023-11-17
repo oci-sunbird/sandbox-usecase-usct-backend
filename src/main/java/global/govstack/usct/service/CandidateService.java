@@ -63,8 +63,13 @@ public class CandidateService {
         candidateRepository
             .findById(id)
             .orElseThrow(() -> new RuntimeException("Candidate with id: " + id + " doesn't exist"));
-    List<PackageDto> packageDtoList =
-        candidate.getOpenImisPackageIds().stream().map(packageService::getById).toList();
+    List<PackageDto> packageDtoList = List.of();
+    if (openImisProperties.mode().equals("open-imis")) {
+      packageDtoList =  candidate.getOpenImisPackageIds().stream().map(packageService::getById).toList();
+    }
+    if (openImisProperties.mode().equals("emulator")) {
+      packageDtoList =  candidate.getEmulatorPackageIds().stream().map(packageService::getById).toList();
+    }
     var consent = new ConsentDto(consentService.findById(candidate.getId()));
     return new CandidateDto(candidate, packageDtoList, consent);
   }
