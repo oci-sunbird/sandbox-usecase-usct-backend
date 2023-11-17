@@ -1,9 +1,10 @@
 package global.govstack.usct.service;
 
 import global.govstack.usct.controller.dto.CandidateDto;
+import global.govstack.usct.controller.dto.ConsentDto;
 import global.govstack.usct.controller.dto.CreateCandidateDto;
 import global.govstack.usct.controller.dto.CreatePersonDto;
-import global.govstack.usct.controller.dto.PackageDto;
+import global.govstack.usct.controller.dto.digital.registries.PackageDto;
 import global.govstack.usct.model.Candidate;
 import global.govstack.usct.model.Person;
 import global.govstack.usct.repositories.CandidateRepository;
@@ -35,8 +36,8 @@ public class CandidateService {
         .map(
             candidate -> {
               List<PackageDto> packageDtoList =
-                  candidate.getPackageIds().stream().map(packageService::getById).toList();
-              var consent = consentService.findById(candidate.getId());
+                  candidate.getOpenImisPackageIds().stream().map(packageService::getById).toList();
+              var consent = new ConsentDto(consentService.findById(candidate.getId()));
               return new CandidateDto(candidate, packageDtoList, consent);
             })
         .toList();
@@ -48,8 +49,8 @@ public class CandidateService {
             .findById(id)
             .orElseThrow(() -> new RuntimeException("Candidate with id: " + id + " doesn't exist"));
     List<PackageDto> packageDtoList =
-        candidate.getPackageIds().stream().map(packageService::getById).toList();
-    var consent = consentService.findById(candidate.getId());
+        candidate.getOpenImisPackageIds().stream().map(packageService::getById).toList();
+    var consent = new ConsentDto(consentService.findById(candidate.getId()));
     return new CandidateDto(candidate, packageDtoList, consent);
   }
 
@@ -63,7 +64,7 @@ public class CandidateService {
     Person person = personService.save(createPersonDto);
     Candidate candidate = new Candidate();
     candidate.setPerson(person);
-    candidate.setPackageIds(createCandidateDto.packageIds());
+    candidate.setOpenImisPackageIds(createCandidateDto.packageIds());
     return candidateRepository.save(candidate);
   }
 

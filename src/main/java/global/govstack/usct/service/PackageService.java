@@ -1,6 +1,6 @@
 package global.govstack.usct.service;
 
-import global.govstack.usct.controller.dto.PackageDto;
+import global.govstack.usct.controller.dto.digital.registries.PackageDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

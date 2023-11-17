@@ -1,8 +1,8 @@
 package global.govstack.usct.service;
 
 import global.govstack.usct.configuration.OpenImisProperties;
-import global.govstack.usct.controller.dto.OpenImisPackageSet;
-import global.govstack.usct.controller.dto.PackageDto;
+import global.govstack.usct.controller.dto.digital.registries.MainResponseDto;
+import global.govstack.usct.controller.dto.digital.registries.PackageDto;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -30,16 +30,15 @@ public class OpenImisService {
   public List<PackageDto> getAll() {
     log.info("Get all packages from OpenIMIS URL: {}", openImisProperties.url());
     try {
-      OpenImisPackageSet packagesSet =
+      MainResponseDto packagesSet =
           restTemplate
               .exchange(
                   openImisProperties.url(),
                   HttpMethod.GET,
-                  new HttpEntity<>(
-                      createHeaders(openImisProperties.user(), openImisProperties.password())),
-                  OpenImisPackageSet.class)
+                  new HttpEntity<>(null, null),
+                  MainResponseDto.class)
               .getBody();
-      return packagesSet.results().stream().map(PackageDto::new).toList();
+      return packagesSet.getResults();
     } catch (Exception ex) {
       throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, ex.getMessage());
     }

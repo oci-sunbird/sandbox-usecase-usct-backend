@@ -11,15 +11,15 @@ public class Consent {
   @Column
   private int id;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @OneToOne
   @JoinColumn(name = "candidate_id", nullable = false)
   private Candidate candidate;
 
   @Column
   @Enumerated(EnumType.STRING)
-  private ConsentStatus consentStatus;
+  private ConsentStatus status;
 
-  @Column private LocalDateTime dateTime;
+  @Column private LocalDateTime date;
 
   public int getId() {
     return id;
@@ -37,19 +37,19 @@ public class Consent {
     this.candidate = candidate;
   }
 
-  public ConsentStatus getConsentStatus() {
-    return consentStatus;
+  public ConsentStatus getStatus() {
+    return status;
   }
 
-  public void setConsentStatus(ConsentStatus consentStatus) {
-    this.consentStatus = consentStatus;
+  public void setStatus(ConsentStatus consentStatus) {
+    this.status = consentStatus;
   }
 
-  public LocalDateTime getDateTime() {
-    return dateTime;
+  public LocalDateTime getDate() {
+    return date;
   }
 
-  public void setDateTime(LocalDateTime dateTime) {
-    this.dateTime = dateTime;
+  public void setDate(LocalDateTime dateTime) {
+    this.date = dateTime;
   }
 }

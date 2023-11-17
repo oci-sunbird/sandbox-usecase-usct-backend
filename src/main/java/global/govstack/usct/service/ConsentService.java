@@ -16,11 +16,8 @@ public class ConsentService {
     this.consentRepository = consentRepository;
   }
 
-  public ConsentDto findById(int consentId) {
-    Optional<Consent> consent = consentRepository.findById(consentId);
-    return consent
-        .map(ConsentDto::new)
-        .orElseGet(() -> new ConsentDto(null, ConsentStatus.NOT_GRANTED, null));
+  public Consent findById(int consentId) {
+    return  consentRepository.findById(consentId).orElseThrow(() -> new RuntimeException("Consent with id: " + consentId + " doesn't exist"));
   }
 
   public Consent save(Consent consent) {
