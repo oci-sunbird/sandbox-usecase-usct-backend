@@ -7,11 +7,29 @@ servers:
   - url: http://localhost:8080
     description: Generated server url
 paths:
+  "/api/v1/consent/{id}":
+    put:
+      tags:
+        - consent-controller
+      operationId: updateCandidate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ConsentDto"
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/ConsentDto"
   "/api/v1/candidates/{id}":
     get:
       tags:
         - candidate-controller
-      operationId: getCandidate_1
+      operationId: getCandidate
       parameters:
         - name: id
           in: path
@@ -29,7 +47,7 @@ paths:
     put:
       tags:
         - candidate-controller
-      operationId: replaceEmployee
+      operationId: updateCandidate_1
       requestBody:
         content:
           application/json:
@@ -43,18 +61,62 @@ paths:
             "*/*":
               schema:
                 "$ref": "#/components/schemas/CandidateDto"
-  "/api/v1/token":
-    post:
+    delete:
       tags:
-        - auth-controller
-      operationId: token
+        - candidate-controller
+      operationId: deleteCandidate
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
       responses:
         '200':
           description: OK
-          content:
-            "*/*":
-              schema:
-                type: string
+  "/api/v1/callback/payment/payment":
+    put:
+      tags:
+        - payment-callback-rest-controller
+      operationId: beneficiaryPaymentCB
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+  "/api/v1/callback/payment/beneficiary-update":
+    put:
+      tags:
+        - payment-callback-rest-controller
+      operationId: beneficiaryUpdateOnboardingCB
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+  "/api/v1/callback/payment/beneficiary-register":
+    put:
+      tags:
+        - payment-callback-rest-controller
+      operationId: beneficiaryRegisterOnboardingCB
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
   "/api/v1/payment/order-payment":
     post:
       tags:
@@ -79,7 +141,7 @@ paths:
     get:
       tags:
         - candidate-controller
-      operationId: getAll_1
+      operationId: getAll
       responses:
         '200':
           description: OK
@@ -110,7 +172,7 @@ paths:
     get:
       tags:
         - beneficiary-controller
-      operationId: getAll_2
+      operationId: getAll_1
       responses:
         '200':
           description: OK
@@ -149,18 +211,11 @@ paths:
             "*/*":
               schema:
                 "$ref": "#/components/schemas/RolesDto"
-  "/api/v1/person-relatives/{id}":
+  "/api/v1/payment/payment-orders":
     get:
       tags:
-        - household-information-controller
-      operationId: getAllRelativesOfPerson
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
+        - payment-rest-controller
+      operationId: getPaymentOrders
       responses:
         '200':
           description: OK
@@ -169,8 +224,8 @@ paths:
               schema:
                 type: array
                 items:
-                  "$ref": "#/components/schemas/RelativeDto"
-  "/api/v1/payment/emulator-health":
+                  "$ref": "#/components/schemas/PaymentDisbursementDto"
+  "/api/v1/payment/health":
     get:
       tags:
         - payment-rest-controller
@@ -215,39 +270,6 @@ paths:
             "*/*":
               schema:
                 "$ref": "#/components/schemas/PackageDto"
-  "/api/v1/household-information":
-    get:
-      tags:
-        - household-information-controller
-      operationId: getAll
-      responses:
-        '200':
-          description: OK
-          content:
-            "*/*":
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/HouseholdInformationDto"
-  "/api/v1/household-information/{id}":
-    get:
-      tags:
-        - household-information-controller
-      operationId: getCandidate
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        '200':
-          description: OK
-          content:
-            "*/*":
-              schema:
-                "$ref": "#/components/schemas/HouseholdInformationDto"
   "/api/v1/beneficiaries/{id}":
     get:
       tags:
@@ -267,8 +289,115 @@ paths:
             "*/*":
               schema:
                 "$ref": "#/components/schemas/BeneficiaryDto"
+  "/api/authmode":
+    get:
+      tags:
+        - auth-mode-controller
+      operationId: authMode
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: string
+  "/api/v1/callback/callback":
+    get:
+      tags:
+        - callback-controller
+      operationId: callback
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/RequestDataDto"
+    put:
+      tags:
+        - callback-controller
+      operationId: callback_3
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/RequestDataDto"
+    post:
+      tags:
+        - callback-controller
+      operationId: callback_2
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/RequestDataDto"
+    delete:
+      tags:
+        - callback-controller
+      operationId: callback_5
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/RequestDataDto"
+    options:
+      tags:
+        - callback-controller
+      operationId: callback_6
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/RequestDataDto"
+    head:
+      tags:
+        - callback-controller
+      operationId: callback_1
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/RequestDataDto"
+    patch:
+      tags:
+        - callback-controller
+      operationId: callback_4
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/RequestDataDto"
 components:
   schemas:
+    ConsentDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        candidateId:
+          type: integer
+          format: int32
+        status:
+          type: string
+          enum:
+            - GRANTED
+            - NOT_GRANTED
+        date:
+          type: string
+          format: date-time
     CandidateDto:
       type: object
       properties:
@@ -281,70 +410,67 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/PackageDto"
+        consent:
+          "$ref": "#/components/schemas/ConsentDto"
     PackageDto:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          example: 1
         name:
           type: string
-          example: UBI
         description:
           type: string
-          example: Universal basic income
         amount:
           type: number
           format: float
-          example: 1000
         currency:
           type: string
-          example: EURO
     PersonDto:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          example: 1
-        foundationalId:
+        personalIdCode:
           type: string
-          example: 9b237f8a-4dc2-4438-af0d-5f01c469b302
         firstName:
           type: string
-          example: John
         lastName:
           type: string
-          example: Smith
         email:
           type: string
-          example: john.smith@example.com
         dateOfBirth:
           type: string
-          example: 28-04-1977
+        region:
+          type: string
+        homeAddress:
+          type: string
+        phoneNumber:
+          type: string
+        occupation:
+          type: string
+        municipality:
+          type: string
+        zipCode:
+          type: string
         bankAccountOwnerName:
           type: string
-          example: John Smith
         financialAddress:
           type: string
-          example: Wilhelmstraße 12
         financialModality:
           type: string
-          example: Bank Account
         iban:
           type: string
-          example: DE12 3456 7812 3456 7890
         bankName:
           type: string
-          example: Golden Bank
     BeneficiaryDto:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          example: 1
         person:
           "$ref": "#/components/schemas/PersonDto"
         paymentStatus:
@@ -359,15 +485,16 @@ components:
       properties:
         person:
           "$ref": "#/components/schemas/CreatePersonDto"
-        packages:
+        packageIds:
           uniqueItems: true
           type: array
           items:
-            "$ref": "#/components/schemas/PackageDto"
+            type: integer
+            format: int32
     CreatePersonDto:
       type: object
       properties:
-        foundationalId:
+        personalIdCode:
           type: string
         firstName:
           type: string
@@ -376,6 +503,18 @@ components:
         email:
           type: string
         dateOfBirth:
+          type: string
+        region:
+          type: string
+        homeAddress:
+          type: string
+        phoneNumber:
+          type: string
+        occupation:
+          type: string
+        municipality:
+          type: string
+        zipCode:
           type: string
         bankAccountOwnerName:
           type: string
@@ -397,36 +536,48 @@ components:
     RolesDto:
       type: object
       properties:
+        email:
+          type: string
+        name:
+          type: string
         roles:
           type: array
-          example: ROLE_PAYMENT_OFFICER
           items:
             type: string
-    RelativeDto:
+    JsonNode:
       type: object
-      properties:
-        person:
-          "$ref": "#/components/schemas/PersonDto"
-        relationshipType:
-          type: string
-          enum:
-            - HUSBAND
-            - WIFE
-            - CHILD
-    HouseholdInformationDto:
+    PaymentDisbursementDto:
       type: object
       properties:
         id:
           type: integer
-          format: int32
-          example: 1
-        person:
-          "$ref": "#/components/schemas/PersonDto"
-        relative:
-          "$ref": "#/components/schemas/PersonDto"
-        relationshipType:
+          format: int64
+        mode:
           type: string
-          enum:
-            - HUSBAND
-            - WIFE
-            - CHILD
+        requestUUID:
+          type: string
+        request:
+          "$ref": "#/components/schemas/JsonNode"
+        response:
+          "$ref": "#/components/schemas/JsonNode"
+        callback:
+          "$ref": "#/components/schemas/JsonNode"
+    RequestDataDto:
+      type: object
+      properties:
+        method:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        parameters:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        body:
+          type: string
