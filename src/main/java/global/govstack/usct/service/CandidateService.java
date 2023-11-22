@@ -11,6 +11,7 @@ import global.govstack.usct.model.Person;
 import global.govstack.usct.repositories.CandidateRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -39,23 +40,21 @@ public class CandidateService {
     return candidates.stream()
         .map(
             candidate -> {
-              List<PackageDto> packagesDto = List.of();
+              List<PackageDto> packages = List.of();
               if (openImisProperties.mode().equals("emulator")) {
-                packagesDto =
-                    candidate.getEmulatorPackageIds().stream()
-                        .map(packageService::getById)
-                        .toList();
+                packages = getPackageDtos(candidate.getEmulatorPackageIds());
               }
               if (openImisProperties.mode().equals("open-imis")) {
-                packagesDto =
-                    candidate.getOpenImisPackageIds().stream()
-                        .map(packageService::getById)
-                        .toList();
+                packages = getPackageDtos(candidate.getOpenImisPackageIds());
               }
               var consent = new ConsentDto(consentService.findById(candidate.getId()));
-              return new CandidateDto(candidate, packagesDto, consent);
+              return new CandidateDto(candidate, packages, consent);
             })
         .toList();
+  }
+
+  private List<PackageDto> getPackageDtos(Set<Integer> candidate) {
+    return candidate.stream().map(packageService::getById).toList();
   }
 
   public CandidateDto findById(int id) {
@@ -63,15 +62,15 @@ public class CandidateService {
         candidateRepository
             .findById(id)
             .orElseThrow(() -> new RuntimeException("Candidate with id: " + id + " doesn't exist"));
-    List<PackageDto> packageDtoList = List.of();
+    List<PackageDto> packages = List.of();
     if (openImisProperties.mode().equals("open-imis")) {
-      packageDtoList =  candidate.getOpenImisPackageIds().stream().map(packageService::getById).toList();
+      packages = getPackageDtos(candidate.getOpenImisPackageIds());
     }
     if (openImisProperties.mode().equals("emulator")) {
-      packageDtoList =  candidate.getEmulatorPackageIds().stream().map(packageService::getById).toList();
+      packages = getPackageDtos(candidate.getEmulatorPackageIds());
     }
     var consent = new ConsentDto(consentService.findById(candidate.getId()));
-    return new CandidateDto(candidate, packageDtoList, consent);
+    return new CandidateDto(candidate, packages, consent);
   }
 
   public void deleteById(Integer id) {

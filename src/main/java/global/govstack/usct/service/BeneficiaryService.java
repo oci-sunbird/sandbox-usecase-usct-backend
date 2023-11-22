@@ -20,12 +20,12 @@ public class BeneficiaryService {
   private final ConsentService consentService;
 
   public BeneficiaryService(
-          BeneficiaryRepository repository,
-          PaymentService paymentService,
-          CandidateService candidateService,
-          PaymentProperties properties,
-          PackageService packageService,
-          ConsentService consentService) {
+      BeneficiaryRepository repository,
+      PaymentService paymentService,
+      CandidateService candidateService,
+      PaymentProperties properties,
+      PackageService packageService,
+      ConsentService consentService) {
     this.repository = repository;
     this.paymentService = paymentService;
     this.candidateService = candidateService;

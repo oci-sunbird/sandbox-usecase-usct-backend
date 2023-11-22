@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ConsentRepository extends JpaRepository<Consent, Integer> {
 
-    void deleteByCandidateId(Candidate candidate);
+  void deleteByCandidateId(Candidate candidate);
 }
-

@@ -45,7 +45,6 @@ create table CONSENT
         foreign key (CANDIDATE_ID) references CANDIDATE
 );
 
-
 create table BENEFICIARY
 (
     ID                      INTEGER AUTO_INCREMENT,
