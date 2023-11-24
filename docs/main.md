@@ -16,11 +16,11 @@ sequenceDiagram
 
     Civil servant ->> USCT-backend: Get all candidates
     USCT-backend ->> OpenIMIS: Get packages
-    USCT-backend ->> Consent BB: Get consent status
-    loop If not granted consent
-      USCT-backend ->>Consent BB: Request for granting consent
+    USCT-backend ->> Consent BB: Check candidate consent record exists
+    loop If no, consent record,
+      USCT-backend ->>Consent BB: Consent request
     end
-    Civil servant ->> USCT-backend: Create new beneficiary and remove beneficiary from candidates list
+  Civil servant ->> USCT-backend: When consent record is in place, create new beneficiary and remove beneficiary from candidates list
     USCT-backend ->> Payment BB: Automatically register beneficiary in payment system if not registered
     USCT-backend ->> Payment BB: Automatically update beneficiary in payment system if registered
     Civil servant ->> USCT-backend: Order payment
