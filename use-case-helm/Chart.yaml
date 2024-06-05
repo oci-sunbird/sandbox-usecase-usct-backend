@@ -5,6 +5,10 @@ type: application
 version: 0.1.0
 appVersion: "1.0.0"
 dependencies:
+  - name: digital-registries-emulator
+    version: 0.1.0
+    repository: file://charts/digital-registries-emulator
+    condition: digital-registries-emulator.enabled
   - name: backend
     version: 0.1.0
     repository: file://charts/backend
@@ -33,7 +37,3 @@ dependencies:
     version: 0.1.0
     repository: file://charts/open-imis-db
     condition: open-imis-db.enabled
-  - name: digital-registries-emulator
-    version: 0.1.0
-    repository: file://charts/digital-registries-emulator
-    condition: digital-registries-emulator.enabled
