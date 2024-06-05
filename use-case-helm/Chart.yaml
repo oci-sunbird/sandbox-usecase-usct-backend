@@ -34,6 +34,6 @@ dependencies:
     repository: file://charts/open-imis-db
     condition: open-imis-db.enabled
   - name: digital-registries-emulator
-    version: 0.1.0
+    version: 0.0.1
     repository: file://charts/digital-registries-emulator
     condition: digital-registries-emulator.enabled
