@@ -60,19 +60,17 @@ spec:
               value: "{{ .Values.service.logLevel }}"
             - name: USCT_AUTHENTICATION
               value: "{{ .Values.service.authmode }}"
-            - name: OPEN-IMIS_MODE
-              value: "{{.Values.openImis.mode}}"
             - name: OPEN_IMIS_MODE
               value: "{{.Values.openImis.mode}}"
-            - name: OPEN-IMIS_URL
+            - name: OPEN_IMIS_URL
               value: "{{ .Values.openImis.url}}"
-            - name: OPEN-IMIS_EMULATOR-URL
+            - name: OPEN_IMIS_EMULATOR_URL
               value: "{{ .Values.openImis.emulator_url}}"
-            - name: OPEN-IMIS_USER
+            - name: OPEN_IMIS_USER
               value: "{{ .Values.openImis.user}}"
-            - name: OPEN-IMIS_PASSWORD
+            - name: OPEN_IMIS_PASSWORD
               value: "{{ .Values.openImis.password}}"
-            - name: OPEN-IMIS_HEADER
+            - name: OPEN_IMIS_HEADER
               value: "{{ .Values.openImis.header}}"
             - name: IGRANT_URL
               value: "{{.Values.igrant.url}}"
