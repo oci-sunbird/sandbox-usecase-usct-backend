@@ -4,7 +4,7 @@ backend:
 payment:
   enabled: false
 im-central-server:
-  enabled: false
+  enabled: true
 im-security-server:
   enabled: false
 ui:
