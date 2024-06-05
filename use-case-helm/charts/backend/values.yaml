@@ -2,13 +2,15 @@ deployment:
   name: backend
   containers:
     name: usct-backend
-    image: ghcr.io/govstackworkinggroup/sandbox-usecase-usct-backend
+    image: ghcr.io/oci-sunbird/sandbox-usecase-usct-backend
     imageTag: latest
     imagePullPolicy: IfNotPresent
 
 service:
   name: backend
   port: 8080
+  logLevel: "INFO"
+  authmode: local
 
 oidcKeystorePassword: ""
 
@@ -37,3 +39,18 @@ paymenthub:
       header: "SANDBOX/ORG/CLIENT/TEST"
 callback:
   cidr: "0.0.0.0/0,::/0"
+
+openImis:
+  url: "http://sandbox-xroad-ss2.im-xroad.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/api/data/registryname/111?search=package&filter=phone"
+  emulator_url: "http://sandbox-xroad-ss2.im-xroad.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/emulator/api/v1/data/bpkg/1.0"
+  user: "admin"
+  password: "govstack"
+  mode: "open-imis"
+  header: "SANDBOX/ORG/CLIENT/TEST"
+
+igrant:
+  url: "http://sandbox-xroad-ss2.im-xroad.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/CONSENT/api/v2/service/individual/record/"
+  token: ""
+  dataAgreementId: ""
+  header: "SANDBOX/ORG/CLIENT/TEST"
+  mode: "igrant"
