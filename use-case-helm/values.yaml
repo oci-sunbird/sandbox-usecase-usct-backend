@@ -2,16 +2,16 @@
 backend:
   enabled: true
 payment:
-  enabled: true
+  enabled: false
 im-central-server:
-  enabled: true
+  enabled: false
 im-security-server:
-  enabled: true
+  enabled: false
 ui:
   enabled: false
 open-imis-backend:
-  enabled: true
+  enabled: false
 open-imis-db:
-  enabled: true
+  enabled: false
 digital-registries-emulator:
-  enabled: true
+  enabled: false

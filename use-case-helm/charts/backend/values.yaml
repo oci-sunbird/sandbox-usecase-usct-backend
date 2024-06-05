@@ -2,8 +2,8 @@ deployment:
   name: backend
   containers:
     name: usct-backend
-    image: ghcr.io/oci-sunbird/sandbox-usecase-usct-backend
-    imageTag: latest
+    image: ghcr.io/govstackworkinggroup/sandbox-usecase-usct-backend
+    imageTag: paymenthub-1
     imagePullPolicy: IfNotPresent
 
 service:
