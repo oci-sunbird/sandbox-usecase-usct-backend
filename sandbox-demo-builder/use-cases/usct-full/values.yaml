@@ -3,6 +3,23 @@ usct-backend:
   deployment:
     containers:
       image: ghcr.io/govstackworkinggroup/sandbox-usecase-usct-backend:paymenthub-1
+      
+  payment:
+    bb:
+      im:
+        base_url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/emulator"
+
+  paymenthub:
+    bb:
+      account_mapper_url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/account-mapper"
+      bulk_connector_url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/bulk-connector"
+
+  openImis:
+    url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/api/data/registryname/111?search=package&filter=phone"
+    emulator_url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/emulator/api/v1/data/bpkg/1.0"
+
+  igrant:
+    url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/CONSENT/api/v2/service/individual/record/"
 
 # open-imis:
 #   enabled: true
