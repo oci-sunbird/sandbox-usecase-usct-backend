@@ -1,6 +1,6 @@
 ### Sub Charts Specific Values ###
 backend:
-  enabled: false
+  enabled: true
 payment:
   enabled: true
 im-central-server:
