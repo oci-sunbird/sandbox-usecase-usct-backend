@@ -6,7 +6,7 @@ payment:
 im-central-server:
   enabled: true
 im-security-server:
-  enabled: false
+  enabled: true
 ui:
   enabled: false
 open-imis-backend:
