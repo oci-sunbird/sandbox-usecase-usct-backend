@@ -1,6 +1,6 @@
 ### Sub Charts Specific Values ###
 backend:
-  enabled: true
+  enabled: false
 payment:
   enabled: true
 im-central-server:
@@ -8,7 +8,7 @@ im-central-server:
 im-security-server:
   enabled: true
 ui:
-  enabled: true
+  enabled: false
 open-imis-backend:
   enabled: true
 open-imis-db:
