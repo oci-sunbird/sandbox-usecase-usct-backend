@@ -62,6 +62,8 @@ spec:
               value: "{{ .Values.service.authmode }}"
             - name: OPEN-IMIS_MODE
               value: "{{.Values.openImis.mode}}"
+            - name: OPEN_IMIS_MODE
+              value: "{{.Values.openImis.mode}}"
             - name: OPEN-IMIS_URL
               value: "{{ .Values.openImis.url}}"
             - name: OPEN-IMIS_EMULATOR-URL
