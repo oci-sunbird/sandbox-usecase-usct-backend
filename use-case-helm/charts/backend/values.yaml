@@ -45,7 +45,7 @@ openImis:
   emulator_url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/emulator/api/v1/data/bpkg/1.0"
   user: "admin"
   password: "govstack"
-  mode: "open-imis"
+  mode: "emulator"
   header: "SANDBOX/ORG/CLIENT/TEST"
 
 igrant:
