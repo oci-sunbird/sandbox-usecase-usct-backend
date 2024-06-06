@@ -8,7 +8,7 @@ im-central-server:
 im-security-server:
   enabled: true
 ui:
-  enabled: false
+  enabled: true
 open-imis-backend:
   enabled: false
 open-imis-db:
