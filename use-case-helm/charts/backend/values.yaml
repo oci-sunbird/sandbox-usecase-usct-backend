@@ -22,13 +22,13 @@ payment:
     government_identifier: "066283"
   bb:
     im:
-      base_url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/api"
+      base_url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/api"
       header: "SANDBOX/ORG/CLIENT/TEST"
 
 paymenthub:
   bb:
-    account_mapper_url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/account-mapper"
-    bulk_connector_url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/bulk-connector"
+    account_mapper_url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/account-mapper"
+    bulk_connector_url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/bulk-connector"
     callback_base_url: "http://backend.usct.svc.cluster.local:8080"
     registering_institution_id: 123456
     tenant: rhino
@@ -41,15 +41,15 @@ callback:
   cidr: "0.0.0.0/0,::/0"
 
 openImis:
-  url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/api/data/registryname/111?search=package&filter=phone"
-  emulator_url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/api/v1/data/bpkg/1.0"
+  url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/api/data/registryname/111?search=package&filter=phone"
+  emulator_url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/api/v1/data/bpkg/1.0"
   user: "admin"
   password: "govstack"
   mode: "emulator"
   header: "SANDBOX/ORG/CLIENT/TEST"
 
 igrant:
-  url: "http://sandbox-xroad-ss2.usct.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/CONSENT/api/v2/service/individual/record/"
+  url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/CONSENT/api/v2/service/individual/record/"
   token: ""
   dataAgreementId: ""
   header: "SANDBOX/ORG/CLIENT/TEST"

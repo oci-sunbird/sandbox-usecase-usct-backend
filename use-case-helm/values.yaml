@@ -14,4 +14,4 @@ open-imis-backend:
 open-imis-db:
   enabled: false
 digital-registries-emulator:
-  enabled: false
+  enabled: true
