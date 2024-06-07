@@ -7,17 +7,17 @@ appVersion: "1.0.0"
 dependencies:
   - name: backend
     version: 0.1.0
-    repository: "file://../../../backend"
+    repository: "file://../../blocks/backend"
     condition: usct-backend.enabled
 
   - name: payment-emulator
     version: 0.1.0
-    repository: "file://../../../payment-emulator"
+    repository: "file://../../blocks/payment-emulator"
     condition: payment-emulator.enabled
 
   - name: digital-registries-emulator
     version: 0.1.0
-    repository: "file://../../../digital-registries-emulator"
+    repository: "file://../../blocks/digital-registries-emulator"
     condition: digital-registries-emulator.enabled
 
   - name: open-imis
