@@ -1,5 +1,5 @@
 deployment:
-  name: backend
+  name: usct-backend
   containers:
     name: usct-backend
     image: ghcr.io/govstackworkinggroup/sandbox-usecase-usct-backend
@@ -7,7 +7,7 @@ deployment:
     imagePullPolicy: IfNotPresent
 
 service:
-  name: backend
+  name: usct-backend
   port: 8080
   logLevel: "INFO"
   authmode: local
