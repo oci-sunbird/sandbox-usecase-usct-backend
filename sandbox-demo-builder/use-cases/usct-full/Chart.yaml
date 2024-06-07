@@ -5,10 +5,20 @@ type: application
 version: 0.1.0
 appVersion: "1.0.0"
 dependencies:
-  - name: usct-backend
+  - name: backend
     version: 0.1.0
-    repository: "file://../../../helm"
+    repository: "file://../../../backend"
     condition: usct-backend.enabled
+
+  - name: payment-emulator
+    version: 0.1.0
+    repository: "file://../../../payment-emulator"
+    condition: payment-emulator.enabled
+
+  - name: digital-registries-emulator
+    version: 0.1.0
+    repository: "file://../../../digital-registries-emulator"
+    condition: digital-registries-emulator.enabled
 
   - name: open-imis
     version: 0.1.0

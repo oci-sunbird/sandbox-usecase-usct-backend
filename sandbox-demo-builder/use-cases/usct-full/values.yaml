@@ -2,8 +2,43 @@ usct-backend:
   enabled: true
   deployment:
     containers:
-      image: ghcr.io/govstackworkinggroup/sandbox-usecase-usct-backend:paymenthub-1
+      name: usct-backend
+      image: ghcr.io/govstackworkinggroup/sandbox-usecase-usct-backend
+      imageTag: paymenthub-1
+      imagePullPolicy: IfNotPresent
 
+  service:
+    name: backend
+    port: 8080
+    logLevel: "INFO"
+    authmode: local
+
+  payment:
+    config:
+      mode: "emulator"
+    bb:
+      im:
+        base_url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/api"
+
+  oidcKeystorePassword: ""
+
+  paymenthub:
+    bb:
+      account_mapper_url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/account-mapper"
+      bulk_connector_url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/PAYMENT/bulk-connector"
+      callback_base_url: "http://backend.usct.svc.cluster.local:8080"
+
+  openImis:
+    url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/api/data/registryname/111?search=package&filter=phone"
+    emulator_url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/DIGITAL-REGISTRIES/emulator/api/v1/data/bpkg/1.0"
+
+  igrant:
+    url: "http://sandbox-xroad-ss2.sandbox-im.svc.cluster.local:8080/r1/SANDBOX/GOV/PROVIDER/CONSENT/api/v2/service/individual/record/"
+    token: ""
+    dataAgreementId: ""
+    mode: "igrant"
+
+  
 open-imis:
   enabled: true
   backend:
@@ -123,3 +158,9 @@ ph-ee-g2psandbox:
       imagePullPolicy: "IfNotPresent"
       volumeClaimTemplate:
         storageClassName: "hcloud-volumes"
+
+payment-emulator:
+  enabled: true
+
+digital-registries-emulator:
+  enabled: true

@@ -1,0 +1,18 @@
+payment_bb_emulator:
+  name: "payment-bb-emulator"
+  replicaCount: 1
+  labels: 
+    app: "payment-bb-emulator"
+  template:
+    labels: 
+      app: "payment-bb-emulator"
+  container:
+    name: payment-emulator
+    image: ghcr.io/govstackworkinggroup/sandbox-bb-payments
+    imageTag: latest
+    imagePullPolicy: IfNotPresent
+  service:
+    name: "payment-bb-emulator"
+    type: ClusterIP
+    port: 8080
+    targetPort: 8080
