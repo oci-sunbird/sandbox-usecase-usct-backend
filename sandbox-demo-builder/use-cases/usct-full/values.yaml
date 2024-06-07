@@ -71,7 +71,7 @@ consentbb:
   # Namespace for kubernetes cluster
   namespace: usct
   # Prefix for kubernetes object names
-  storageClassName: "hcloud-volumes"
+  storageClassName: "oci-bv"
   adminDashboard:
     configuration:
       appVersion: 2023.11.6
@@ -157,7 +157,7 @@ ph-ee-g2psandbox:
     elasticsearch:
       imagePullPolicy: "IfNotPresent"
       volumeClaimTemplate:
-        storageClassName: "hcloud-volumes"
+        storageClassName: "oci-bv"
 
 payment-emulator:
   enabled: true
