@@ -1,6 +1,7 @@
 ---
 baseImage: "bb/im/sandbox-x-road/security-server"
 tokenPin: "1234"
+Namespace: sandbox-im
 dbStorage: "5Gi"
 servers:
   ss1:

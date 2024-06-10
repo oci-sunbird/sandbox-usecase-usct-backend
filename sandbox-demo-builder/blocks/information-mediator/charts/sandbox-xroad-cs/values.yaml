@@ -1,5 +1,6 @@
 ---
 tokenPin: "1234"
+Namespace: sandbox-im
 baseImage: bb/im/sandbox-x-road/central-server
 tag: latest-cs
 image:
