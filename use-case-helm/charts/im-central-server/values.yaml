@@ -2,7 +2,7 @@
 tokenPin: "1234"
 serverImage: "im/x-road/central-server"
 serverTag: "latest-cs"
-
+Namespace: sandbox-im
 container:
   image: ghcr.io/govstackworkinggroup/sandbox-bb-information-mediator
   tag: latest-cs

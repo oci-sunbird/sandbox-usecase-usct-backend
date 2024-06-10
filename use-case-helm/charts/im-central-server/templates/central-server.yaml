@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ $.Values.Namespace }}
   name: pvc-sandbox-xroad-cs-config
 spec:
   accessModes:
@@ -14,7 +14,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ $.Values.Namespace }}
   name: pvc-sandbox-xroad-cs-test-ca
 spec:
   accessModes:
@@ -26,7 +26,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ $.Values.Namespace }}
   name: sandbox-xroad-cs
 spec:
   selector:
@@ -98,7 +98,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ $.Values.Namespace }}
   name: sandbox-xroad-cs
 spec:
   type: ClusterIP
