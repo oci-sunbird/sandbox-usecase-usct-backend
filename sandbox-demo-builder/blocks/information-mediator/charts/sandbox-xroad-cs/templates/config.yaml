@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  namespace: {{ $.Values.Namespace }}
+  namespace: {{ .Release.Namespace }}
   name: sandbox-xroad-cs
 {{- if $secret }}
 data:

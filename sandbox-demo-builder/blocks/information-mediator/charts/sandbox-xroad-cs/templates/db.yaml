@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  namespace: {{ $.Values.Namespace }}
+  namespace: {{ .Release.Namespace }}
   name: pvc-sandbox-xroad-cs-db
 spec:
   accessModes:
@@ -14,7 +14,7 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  namespace: {{ $.Values.Namespace }}
+  namespace: {{ .Release.Namespace }}
   name: sandbox-xroad-cs-db
 spec:
   replicas: 1
@@ -59,7 +59,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: {{ $.Values.Namespace }}
+  namespace: {{ .Release.Namespace }}
   name: sandbox-xroad-cs-db
 spec:
   clusterIP: None
