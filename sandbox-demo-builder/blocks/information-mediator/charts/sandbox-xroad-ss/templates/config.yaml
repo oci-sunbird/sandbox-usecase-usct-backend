@@ -1,6 +1,6 @@
 {{- range $server,$tag := .Values.servers }}
 ---
-{{- $secret := (lookup "v1" "Secret" $$.Release.Namespace "sandbox-xroad-{{ $server }} ") }}
+{{- $secret := (lookup "v1" "Secret" $.Release.Namespace "sandbox-xroad-{{ $server }} ") }}
 apiVersion: v1
 kind: Secret
 metadata:
