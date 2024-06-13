@@ -1,3 +1,5 @@
+{{- $annotations := .Values.ingress.annotations -}}
+{{- $tlssecret := .Values.ingress.tlssecret -}}
 {{- range $server, $value := .Values.servers }}
 {{- if $value.ingress }}
 ---
@@ -6,7 +8,7 @@ kind: Ingress
 metadata:
   name: "{{ $server }}-ingress"
   namespace: "{{ $.Release.Namespace }}"
-  {{- with .Values.ingress.annotations }}
+  {{- with $annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -25,6 +27,6 @@ spec:
   tls:
     - hosts:
         - {{ $value.host | quote }}
-      secretName: {{ .Values.ingress.tlssecret }}
+      secretName: {{ $tlssecret }}
 {{- end }}
 {{- end }}
