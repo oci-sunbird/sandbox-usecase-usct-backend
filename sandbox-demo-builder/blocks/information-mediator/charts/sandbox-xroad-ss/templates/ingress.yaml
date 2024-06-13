@@ -1,7 +1,6 @@
 {{- $annotations := .Values.ingress.annotations -}}
 {{- $tlssecret := .Values.ingress.tlssecret -}}
 {{- range $server, $value := .Values.servers }}
-{{- if $value.ingress }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -28,5 +27,4 @@ spec:
     - hosts:
         - {{ $value.host | quote }}
       secretName: {{ $tlssecret }}
-{{- end }}
 {{- end }}

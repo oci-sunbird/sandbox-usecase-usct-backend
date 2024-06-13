@@ -14,15 +14,12 @@ servers:
   ss1:
     image:
     tag: "latest-ss1"
-    ingress: false
     host: im-ss1.example.com
   ss2:
     image:
     tag: "latest-ss2"
-    ingress: true
     host: im-ss2.example.com
   ss3:
     image:
     tag: "latest-ss3"
-    ingress: false
     host: im-ss3.example.com
