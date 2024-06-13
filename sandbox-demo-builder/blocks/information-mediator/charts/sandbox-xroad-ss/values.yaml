@@ -3,13 +3,26 @@ baseImage: "bb/im/sandbox-x-road/security-server"
 tokenPin: "1234"
 Namespace: sandbox-im
 dbStorage: "5Gi"
+ingress:
+  tlssecret: tls-secret
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
 servers:
   ss1:
     image:
     tag: "latest-ss1"
+    ingress: false
+    host: im-ss1.example.com
   ss2:
     image:
     tag: "latest-ss2"
+    ingress: true
+    host: im-ss2.example.com
   ss3:
     image:
     tag: "latest-ss3"
+    ingress: false
+    host: im-ss3.example.com

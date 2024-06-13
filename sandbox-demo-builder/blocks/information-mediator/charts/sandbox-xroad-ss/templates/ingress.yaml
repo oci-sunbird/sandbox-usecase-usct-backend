@@ -1,0 +1,30 @@
+{{- range $server, $value := .Values.servers }}
+{{- if $value.ingress }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ $server }}-ingress"
+  namespace: "{{ .Release.Namespace }}"
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  rules:
+    - host: {{ $value.host | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sandbox-xroad-{{ $server }}
+                port:
+                  number: 4000
+  tls:
+    - hosts:
+        - {{ $value.host | quote }}
+      secretName: {{ .Values.ingress.tlssecret }}
+{{- end }}
+{{- end }}
