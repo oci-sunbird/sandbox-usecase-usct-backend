@@ -40,7 +40,7 @@ dependencies:
     repository: "https://decentralised-dataexchange.github.io/bb-consent-infrastructure/stable/"
     condition: consentbb.enabled
 
-  - name: ph-ee-g2psandbox
-    version: 1.5.0
-    repository: "https://fynarfin.io/images/ph-ee-g2psandbox-1.5.0/"
-    condition: ph-ee-g2psandbox.enabled
+  # - name: ph-ee-g2psandbox
+  #   version: 1.5.0
+  #   repository: "https://fynarfin.io/images/ph-ee-g2psandbox-1.5.0/"
+  #   condition: ph-ee-g2psandbox.enabled
