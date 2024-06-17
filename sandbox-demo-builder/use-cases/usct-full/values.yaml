@@ -58,7 +58,7 @@ open-imis:
     secret:
       password:
 
-information-mediator:
+sandbox-im-x-road:
   enabled: true
   sandbox-im-xroad-ss:
     servers:

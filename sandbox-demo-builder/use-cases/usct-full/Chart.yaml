@@ -27,8 +27,8 @@ dependencies:
 
   - name: sandbox-im-x-road
     version: 0.1.0
-    repository: "file://../../blocks/information-mediator"
-    condition: information-mediator.enabled
+    repository: "file://../../blocks/sandbox-im-x-road"
+    condition: sandbox-im-x-road.enabled
 
   - name: usct-frontend
     version: 0.0.1
