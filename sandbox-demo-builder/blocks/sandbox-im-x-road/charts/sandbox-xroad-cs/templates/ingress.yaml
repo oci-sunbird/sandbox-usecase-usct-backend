@@ -1,0 +1,30 @@
+{{- $annotations := .Values.ingress.annotations -}}
+{{- $tlssecret := .Values.ingress.tlssecret -}}
+{{- $host := .Values.ingress.host -}}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "im-cs-ingress"
+  namespace: "{{ $.Release.Namespace }}"
+  {{- with $annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  rules:
+    - host: {{ $host | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sandbox-xroad-cs
+                port:
+                  number: 4000
+  tls:
+    - hosts:
+        - {{ $host | quote }}
+      secretName: {{ $tlssecret }}
+
